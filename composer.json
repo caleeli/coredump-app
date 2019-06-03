@@ -1,16 +1,31 @@
 {
-    "name": "laravel/laravel",
+    "name": "coredump/manager",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Coredump application manager.",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../vue-jdd-flow"
+        },
+        {
+            "type": "path",
+            "url": "../jdd-api"
+        }
+    ],
     "keywords": [
-        "framework",
+        "coredump",
+        "manager",
         "laravel"
     ],
-    "license": "MIT",
+    "license": "GNU Affero General Public License version 3",
     "require": {
         "php": "^7.1.3",
+        "coredump/jdd-api": "dev-master",
+        "coredump/jdd-flow": "dev-master",
+        "darkaonline/l5-swagger": "^5.8",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
+        "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {
@@ -50,9 +65,11 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish"
         ],
         "post-root-package-install": [
+            "@php -r \"!file_exists('database/database.sqlite') && file_put_contents('database/database.sqlite', '');\"",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [

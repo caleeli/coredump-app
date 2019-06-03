@@ -1,4 +1,6 @@
 window._ = require('lodash');
+const Vue = window.Vue = require('vue');
+window.moment = require('moment');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -22,6 +24,7 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.baseURL = "/api/data/";
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -43,13 +46,40 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+/**
+ * Get meta tag value
+ * @param {string} name
+ * @returns {string}
+ */
+function meta(name) {
+    let tag = document.head.querySelector('meta[name="' + name + '"]');
+    return tag ? tag.content : null;
+}
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+let broadcasterHost = meta("broadcaster-host");
+if (broadcasterHost) {
+    window.io = require('socket.io-client');
+
+    window.Echo = new Echo({
+        broadcaster: 'socket.io',
+        host: meta("broadcaster-host"),
+        key: meta("broadcaster-key")
+    });
+}
+
+/**
+ * Setup Vue Jdd Components
+ */
+const VueJddComponents = require('vue-jdd-components');
+window.Vue.use(VueJddComponents.default, {jQuery: window.$});
+
+/**
+ * Config Vue-Router
+ */
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+window.router = new VueRouter({
+    routes: []
+});
