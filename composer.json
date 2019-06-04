@@ -1,20 +1,20 @@
 {
-    "name": "coredump/manager",
+    "name": "coredump/app",
     "type": "project",
-    "description": "Coredump application manager.",
+    "description": "Coredump application.",
     "repositories": [
         {
             "type": "path",
-            "url": "../vue-jdd-flow"
+            "url": "https://github.com/caleeli/jdd-flow.git"
         },
         {
             "type": "path",
-            "url": "../jdd-api"
+            "url": "https://github.com/caleeli/jdd-api.git"
         }
     ],
     "keywords": [
         "coredump",
-        "manager",
+        "application",
         "laravel"
     ],
     "license": "GNU Affero General Public License version 3",
