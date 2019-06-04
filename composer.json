@@ -4,11 +4,11 @@
     "description": "Coredump application.",
     "repositories": [
         {
-            "type": "path",
+            "type": "vcs",
             "url": "https://github.com/caleeli/jdd-flow.git"
         },
         {
-            "type": "path",
+            "type": "vcs",
             "url": "https://github.com/caleeli/jdd-api.git"
         }
     ],
