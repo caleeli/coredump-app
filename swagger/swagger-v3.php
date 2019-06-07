@@ -27,4 +27,32 @@
  *     )
  * )
  *
+ *  @OA\Post(
+ *      tags={"jdd-menus"},
+ *      path="/api/data/user",
+ *      summary="Obtiene los menues del usuario",
+ *      @OA\RequestBody(
+ *          required=true,
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="call",
+ *                  type="object",
+ *                  @OA\Property(
+ *                      property="method",
+ *                      type="string",
+ *                      example="allMenus",
+ *                  ),
+ *                  @OA\Property(
+ *                      property="parameters",
+ *                      type="object",
+ *                  ),
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=201,
+ *          description="success",
+ *          @OA\JsonContent(ref="#/components/schemas/Process")
+ *      ),
+ *  )
  */

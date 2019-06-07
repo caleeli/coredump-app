@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
+use Artisan;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\PackageManifest;
-use Illuminate\Support\Facades\Artisan;
 
 class JddAutoloaddump extends Command
 {
@@ -14,7 +13,7 @@ class JddAutoloaddump extends Command
      *
      * @var string
      */
-    protected $signature = 'jdd:autoloaddump';
+    protected $signature = 'jdd-package:update';
 
     /**
      * The console command description.
@@ -28,9 +27,12 @@ class JddAutoloaddump extends Command
      *
      * @return mixed
      */
-    public function handle(PackageManifest $manifest)
+    public function handle()
     {
-        $manifest->build();
-        dump(array_keys($manifest->manifest));
+        foreach (Artisan::all() as $name => $command) {
+            if (substr($name, -11) === ':jdd-update') {
+                $this->call($name);
+            }
+        }
     }
 }

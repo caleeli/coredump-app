@@ -38,4 +38,25 @@ modules.keys().map(key => {
 const app = new Vue({
     router: window.router,
     el: '#app',
+    mixins: [window.workflowMixin],
+    data() {
+        return {
+            menus: [],
+            me: this,
+        };
+    },
+    mounted() {
+        window.axios.post(
+            `user/${window.userId}`,
+            {
+                call: {
+                    method: "allMenus",
+                    parameters: {},
+                }
+            }
+        ).then(response => {
+            this.$set(this, 'menus', response.data.response);
+            return response;
+        });
+    },
 });

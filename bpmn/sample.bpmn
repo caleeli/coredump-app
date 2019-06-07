@@ -6,7 +6,8 @@
       <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
       <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
     </extensionElements>
-    <startEvent id="_2" isInterrupting="true" name="Start Event" parallelMultiple="false">
+    <startEvent id="_2" isInterrupting="true" name="Register an user" parallelMultiple="false">
+      <documentation id="_2_D_1" textFormat="text/plain"><![CDATA[@icon(fas fa-address-card)]]></documentation>
       <outgoing>_4</outgoing>
       <outputSet/>
     </startEvent>
@@ -41,13 +42,13 @@ User::create([
       <bpmndi:BPMNShape bpmnElement="_2" id="Yaoqiang-_2">
         <dc:Bounds height="32.0" width="32.0" x="280.25" y="286.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="63.0" x="264.75" y="326.77"/>
+          <dc:Bounds height="18.96" width="93.0" x="249.75" y="326.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" id="Yaoqiang-_3">
-        <dc:Bounds height="55.0" width="85.0" x="358.75" y="274.75"/>
+        <dc:Bounds height="55.0" width="85.0" x="372.75" y="274.75"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="59.0" x="371.75" y="294.77"/>
+          <dc:Bounds height="18.96" width="59.0" x="385.75" y="294.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_5" id="Yaoqiang-_5">
@@ -70,17 +71,17 @@ User::create([
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6" id="Yaoqiang-_6">
-        <di:waypoint x="444.0" y="302.25"/>
+        <di:waypoint x="458.0" y="302.25"/>
         <di:waypoint x="524.0" y="302.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="481.0" y="292.77"/>
+          <dc:Bounds height="18.96" width="6.0" x="488.0" y="292.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4" id="Yaoqiang-_4">
         <di:waypoint x="311.99804675577616" y="302.25"/>
-        <di:waypoint x="359.0" y="302.25"/>
+        <di:waypoint x="373.0" y="302.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="332.5" y="292.77"/>
+          <dc:Bounds height="18.96" width="6.0" x="339.5" y="292.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

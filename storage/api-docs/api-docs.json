@@ -26,6 +26,50 @@
                 }
             }
         },
+        "/api/data/user": {
+            "post": {
+                "tags": [
+                    "jdd-menus"
+                ],
+                "summary": "Obtiene los menues del usuario",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "call": {
+                                        "properties": {
+                                            "method": {
+                                                "type": "string",
+                                                "example": "allMenus"
+                                            },
+                                            "parameters": {
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Process"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/data/process": {
             "get": {
                 "tags": [
@@ -81,6 +125,68 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Process"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/data/test": {
+            "get": {
+                "tags": [
+                    "jdd-test"
+                ],
+                "summary": "List some test records",
+                "responses": {
+                    "200": {
+                        "description": "List some test records.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Test"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "jdd-test"
+                ],
+                "summary": "Save a test record",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/TestEditable"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Test"
                                 }
                             }
                         }
@@ -175,6 +281,72 @@
                                     },
                                     "id": {
                                         "description": "Process model\n\nSwagger definition:",
+                                        "type": "string",
+                                        "format": "id"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "TestEditable": {
+                "properties": {
+                    "attributes": {
+                        "description": "Test model\n\nSwagger definition:",
+                        "properties": {
+                            "data": {
+                                "description": "Test model\n\nSwagger definition:",
+                                "type": "object"
+                            },
+                            "status": {
+                                "description": "Test model\n\nSwagger definition:",
+                                "type": "string",
+                                "enum": [
+                                    "ACTIVE",
+                                    "COMPLETED"
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Test": {
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "description": "Test model\n\nSwagger definition:",
+                                "type": "string",
+                                "format": "id"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/TestEditable"
+                    },
+                    {
+                        "properties": {
+                            "attributes": {
+                                "description": "Test model\n\nSwagger definition:",
+                                "properties": {
+                                    "created_at": {
+                                        "description": "Test model\n\nSwagger definition:",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updated_at": {
+                                        "description": "Test model\n\nSwagger definition:",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "id": {
+                                        "description": "Test model\n\nSwagger definition:",
                                         "type": "string",
                                         "format": "id"
                                     }
