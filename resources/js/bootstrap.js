@@ -67,7 +67,7 @@ if (broadcasterHost) {
     window.Echo = new Echo({
         broadcaster: 'socket.io',
         host: meta("broadcaster-host"),
-        key: meta("broadcaster-key")
+        key: meta("broadcaster-key"),
     });
 }
 

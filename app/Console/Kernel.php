@@ -2,9 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Install;
+use App\Console\Commands\JddAutoloaddump;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\JddAutoloaddump;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         JddAutoloaddump::class,
+        Install::class,
     ];
 
     /**
