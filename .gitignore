@@ -15,6 +15,7 @@
 composer.lock
 Homestead.json
 Homestead.yaml
+laravel-echo-server.json
 laravel-echo-server.lock
 npm-debug.log
 package-lock.json
