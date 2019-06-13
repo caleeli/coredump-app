@@ -43,7 +43,8 @@ class Install extends Command
         // Save .env
         $this->setEnv('APP_URL', $appUrl);
         $this->setEnv('APP_DEBUG', $appDebug);
-        $this->setEnv('BROADCASTER_HOST', "{$protocol}:://{$broadcasterHost}:{$broadcasterPort}");
+        $this->setEnv('DB_DATABASE', base_path('database/database.sqlite'));
+        $this->setEnv('BROADCASTER_HOST', "{$protocol}://{$broadcasterHost}:{$broadcasterPort}");
         $this->setEnv('BROADCASTER_ID', $broadcasterId);
         $this->setEnv('BROADCASTER_KEY', $broadcasterKey);
 
