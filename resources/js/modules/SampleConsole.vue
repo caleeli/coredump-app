@@ -1,5 +1,11 @@
 <template>
-  <panel name="Console" icon="fa fa-user" class="panel-success">
+  <panel
+    name="Console"
+    icon="fa fa-user"
+    class="panel-success"
+    :actions="actions"
+    @close="completeTask({})"
+  >
     <pre>{{log}}</pre>
   </panel>
 </template>
@@ -10,6 +16,12 @@ export default {
   mixins: [window.workflowMixin],
   data() {
     return {
+      actions: {
+        close: {
+          name: "",
+          icon: "fas fa-times"
+        }
+      },
       log: ""
     };
   },

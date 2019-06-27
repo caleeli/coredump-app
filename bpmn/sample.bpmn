@@ -20,19 +20,18 @@
       <documentation id="_5_D_1" textFormat="text/plain"><![CDATA[@console(_6)]]></documentation>
       <incoming>_12</incoming>
       <outgoing>_8</outgoing>
-      <script><![CDATA[Hola Mundo!!
-<?php
-
-return;
+      <script><![CDATA[<?php
 
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
-User::create([
-  'name' => $this->data->user->name,
-  'email' => $this->data->user->email,
-  'password' => Hash::make($this->data->user->password),
-]);]]></script>
+$user = User::create([
+  'name' => $model->data->user->name,
+  'email' => $model->data->user->email,
+  'password' => Hash::make($model->data->user->password),
+]);
+
+echo "Usuario creado. Id = " . $user->id;]]></script>
     </scriptTask>
     <endEvent id="_7" name="script completed">
       <incoming>_8</incoming>
@@ -102,45 +101,45 @@ User::create([
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_17" id="Yaoqiang-_17">
-        <di:waypoint x="457.0" y="302.25"/>
-        <di:waypoint x="517.25" y="302.25"/>
+        <di:waypoint x="457.2058823529411" y="302.25"/>
+        <di:waypoint x="517.3676470588235" y="302.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="484.13" y="292.77"/>
+          <dc:Bounds height="18.96" width="6.0" x="484.29" y="292.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14" id="Yaoqiang-_14">
-        <di:waypoint x="704.0" y="349.75"/>
-        <di:waypoint x="764.0019532442238" y="349.75"/>
+        <di:waypoint x="704.2058823529411" y="349.75"/>
+        <di:waypoint x="764.209457849765" y="349.75"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="731.0" y="340.27"/>
+          <dc:Bounds height="18.96" width="6.0" x="731.21" y="340.27"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_12" id="Yaoqiang-_12">
-        <di:waypoint x="558.75" y="302.25"/>
-        <di:waypoint x="619.0" y="254.75"/>
+        <di:waypoint x="559.0441176470587" y="302.25"/>
+        <di:waypoint x="619.2058823529411" y="254.75"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="586.25" y="269.4"/>
+          <dc:Bounds height="18.96" width="6.0" x="586.25" y="269.15"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11" id="Yaoqiang-_11">
-        <di:waypoint x="558.75" y="302.25"/>
-        <di:waypoint x="619.0" y="349.75"/>
+        <di:waypoint x="559.0441176470587" y="302.25"/>
+        <di:waypoint x="619.2058823529411" y="349.75"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="586.25" y="316.15"/>
+          <dc:Bounds height="18.96" width="6.0" x="586.25" y="316.4"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8" id="Yaoqiang-_8">
-        <di:waypoint x="704.0" y="254.75"/>
-        <di:waypoint x="764.0019532442238" y="254.75"/>
+        <di:waypoint x="704.2058823529411" y="254.75"/>
+        <di:waypoint x="764.209457849765" y="254.75"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="731.0" y="245.27"/>
+          <dc:Bounds height="18.96" width="6.0" x="731.21" y="245.27"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4" id="Yaoqiang-_4">
-        <di:waypoint x="311.99804675577616" y="302.25"/>
-        <di:waypoint x="372.0" y="302.25"/>
+        <di:waypoint x="312.2050645876658" y="302.25"/>
+        <di:waypoint x="372.2058823529411" y="302.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="6.0" x="339.0" y="292.77"/>
+          <dc:Bounds height="18.96" width="6.0" x="339.21" y="292.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
