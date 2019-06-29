@@ -8,7 +8,7 @@ use JDD\Workflow\Models\Process;
 use Tests\TestCase;
 
 /**
- * Application menus
+ * Workflow
  */
 class BpmnSampleTest extends TestCase
 {
