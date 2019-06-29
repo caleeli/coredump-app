@@ -6,7 +6,7 @@
       <yaoqiang:pageFormat height="841.8897637795276" imageableHeight="831.8897637795276" imageableWidth="588.1102362204724" imageableX="5.0" imageableY="5.0" orientation="0" width="598.1102362204724"/>
       <yaoqiang:page background="#FFFFFF" horizontalCount="1" verticalCount="1"/>
     </extensionElements>
-    <startEvent id="_2" isInterrupting="true" name="Register an user qe" parallelMultiple="false">
+    <startEvent id="_2" isInterrupting="true" name="Register an user" parallelMultiple="false">
       <documentation id="_2_D_1" textFormat="text/plain"><![CDATA[@icon(fas fa-address-card)]]></documentation>
       <outgoing>_4</outgoing>
       <outputSet/>
@@ -61,7 +61,7 @@ echo "Usuario creado. Id = " . $user->id;]]></script>
       <bpmndi:BPMNShape bpmnElement="_2" id="Yaoqiang-_2">
         <dc:Bounds height="32.0" width="32.0" x="280.25" y="286.25"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="18.96" width="109.0" x="241.75" y="326.77"/>
+          <dc:Bounds height="18.96" width="93.0" x="249.75" y="326.77"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" id="Yaoqiang-_3">
