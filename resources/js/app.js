@@ -41,6 +41,8 @@ const app = new Vue({
     mixins: [window.workflowMixin],
     data() {
         return {
+            // Used to open the west menu in compact view
+            westOpen: false,
             menus: [],
             me: this,
         };
