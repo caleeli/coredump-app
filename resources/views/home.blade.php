@@ -13,15 +13,15 @@
             </topbar>
         </template>
         <template slot="west">
-            <list v-slot="{item, control, level}" style="width:320px"
-                :value="menus">
-                <a href="javascript:void(0)" :class="level"
-                    class="list-group-item list-group-item-action list-group-item-primary"
-                    @click="control.toggle(me).hasAction ? westOpen=false : null">
-                    <i v-if="item.icon" :class="item.icon"></i>
-                    @{{item.name}}
-                </a>
-            </list>
+                <list v-slot="{item, control, level}" style="width:320px"
+                    :value="menus">
+                    <a href="javascript:void(0)" :class="level"
+                        class="list-group-item list-group-item-action"
+                        @click="control.toggle(me).hasAction ? westOpen=false : null">
+                        <i v-if="item.icon" :class="item.icon"></i>
+                        @{{item.name}}
+                    </a>
+                </list>
         </template>
         <router-view></router-view>
     </layout>

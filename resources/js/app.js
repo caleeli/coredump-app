@@ -38,13 +38,14 @@ modules.keys().map(key => {
 const app = new Vue({
     router: window.router,
     el: '#app',
-    mixins: [window.workflowMixin],
+    mixins: [window.workflowMixin, window.ResourceMixin],
     data() {
         return {
             // Used to open the west menu in compact view
             westOpen: false,
             menus: [],
             me: this,
+            user: this.$api.user.row(window.userId),
         };
     },
     mounted() {

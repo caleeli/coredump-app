@@ -50,7 +50,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.userId = meta('user-id');
+window.userId = meta('user-id') * 1;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

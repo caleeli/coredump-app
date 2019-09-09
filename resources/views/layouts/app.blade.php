@@ -16,6 +16,9 @@
 
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        @foreach (config('plugins.css') as $css)
+        <link href="{{ $css }}?{{filemtime(public_path($css))}}" rel="stylesheet">
+        @endforeach
     </head>
     <body>
         <div id="app" class="flex-center position-ref full-height">
