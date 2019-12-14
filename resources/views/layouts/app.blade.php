@@ -27,6 +27,8 @@
         @foreach (config('plugins.javascript_before') as $javascript)
         <script src="{{ $javascript }}?{{filemtime(public_path($javascript))}}" defer></script>
         @endforeach
+        <script src="{{ mix('js/manifest.js') }}" defer></script>
+        <script src="{{ mix('js/vendor.js') }}" defer></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
         @foreach (config('plugins.javascript') as $javascript)
         <script src="{{ $javascript }}?{{filemtime(public_path($javascript))}}" defer></script>

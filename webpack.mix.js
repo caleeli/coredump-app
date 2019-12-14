@@ -11,5 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css').version();
+if (!mix.inProduction()) {
+    mix.js('resources/js/app.js', 'public/js')
+        .extract()
+        .sass('resources/sass/app.scss', 'public/css')
+        .sourceMaps()
+        .version();
+
+    mix.webpackConfig({
+        devtool: 'inline-source-map'
+    });
+} else {
+    mix.js('resources/js/app.js', 'public/js')
+        .extract()
+        .sass('resources/sass/app.scss', 'public/css')
+        .version();
+}
