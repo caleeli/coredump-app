@@ -5,6 +5,10 @@
     "repositories": [
         {
             "type": "vcs",
+            "url": "https:\/\/github.com\/caleeli\/jdd-theme.git"
+        },
+        {
+            "type": "vcs",
             "url": "https:\/\/github.com\/caleeli\/jdd-flow.git"
         },
         {
