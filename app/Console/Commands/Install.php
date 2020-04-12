@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use function GuzzleHttp\json_encode;
+use Illuminate\Support\Facades\Artisan;
 
-class Install extends Command
+class Install extends Config
 {
     /**
      * The name and signature of the console command.
@@ -29,77 +29,11 @@ class Install extends Command
      */
     public function handle()
     {
-        $appUrl = $this->ask('(APP_URL) Application URL', config('app.url'));
-        $parsed = parse_url($appUrl);
-        $protocol = $parsed['scheme'];
-        $broadcasterHost = $parsed['host'];
-        $appDebug = $this->confirm('(APP_DEBUG) Enable debug mode?', config('app.debug'));
-        $broadcasterHost = $this->ask('(BROADCASTER_HOST Host) Laravel Echo Host', $broadcasterHost);
-        $broadcasterPort = $this->ask('(BROADCASTER_HOST Port) Laravel Echo Port', rand(9000, 9999));
-        $protocol = $this->ask('(BROADCASTER_HOST Protocol) Laravel Echo Protocol', $protocol);
-        $broadcasterId = $this->ask('(BROADCASTER_ID) Laravel Echo Host', uniqid());
-        $broadcasterKey = $this->ask('(BROADCASTER_KEY) Laravel Echo Host', str_replace('.', '', uniqid('', true)));
-
-        // Save .env
-        $this->setEnv('APP_URL', $appUrl);
-        $this->setEnv('APP_DEBUG', $appDebug);
-        $this->setEnv('DB_DATABASE', base_path('database/database.sqlite'));
-        $this->setEnv('BROADCASTER_HOST', "{$protocol}://{$broadcasterHost}:{$broadcasterPort}");
-        $this->setEnv('BROADCASTER_ID', $broadcasterId);
-        $this->setEnv('BROADCASTER_KEY', $broadcasterKey);
-
-        // Save laravel-echo-server.json
-        $config = [
-            'authHost' => $appUrl,
-            'authEndpoint' => '/broadcasting/auth',
-            'clients' => [
-                [
-                    'appId' => $broadcasterId,
-                    'key' => $broadcasterKey
-                ]
-            ],
-            'database' => 'redis',
-            'databaseConfig' => [
-                'redis' => [],
-                'sqlite' => [
-                    'databasePath' => '/database/laravel-echo-server.sqlite'
-                ]
-            ],
-            'devMode' => $appDebug,
-            'host' => $broadcasterHost,
-            'port' => $broadcasterPort,
-            'protocol' => $protocol,
-            'socketio' => [],
-            'sslCertPath' => '',
-            'sslKeyPath' => '',
-            'sslCertChainPath' => '',
-            'sslPassphrase' => '',
-            'subscribers' => [
-                'http' => true,
-                'redis' => true
-            ],
-            'apiOriginAllow' => [
-                'allowCors' => true,
-                'allowOrigin' => $appUrl,
-                'allowMethods' => 'GET, POST',
-                'allowHeaders' => 'Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id'
-            ]
-        ];
-        file_put_contents('laravel-echo-server.json', json_encode($config, JSON_PRETTY_PRINT));
-    }
-
-    /**
-     * Set a .env configuration
-     *
-     * @param string $name
-     * @param string $value
-     *
-     * @return void
-     */
-    private function setEnv($name, $value)
-    {
-        $config = file_get_contents('.env');
-        $newConfig = preg_replace('/^\s*' . preg_quote($name) . '\s*=.*$/m', "$name=$value", $config);
-        file_put_contents('.env', $newConfig);
+        parent::handle();
+        if (config('database.default') === 'sqlite'
+            && !file_exists(config('database.connections.sqlite.database'))) {
+            file_put_contents(config('database.connections.sqlite.database'), '');
+        }
+        Artisan::call('migrate:fresh', ['--seed' => true]);
     }
 }
