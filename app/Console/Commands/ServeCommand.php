@@ -20,7 +20,7 @@ class ServeCommand extends Command
         return [
             ['host', null, InputOption::VALUE_OPTIONAL, 'The host address to serve the application on', $config['host']],
 
-            ['port', null, InputOption::VALUE_OPTIONAL, 'The port to serve the application on', $config['port']],
+            ['port', null, InputOption::VALUE_OPTIONAL, 'The port to serve the application on', $config['port'] ?? ''],
 
             ['tries', null, InputOption::VALUE_OPTIONAL, 'The max number of ports to attempt to serve from', 10],
         ];
