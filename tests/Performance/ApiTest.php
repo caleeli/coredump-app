@@ -59,7 +59,7 @@ class ApiTest extends TestCase
             }
         }
 
-        $this->saveLineChart('API response time for different number of records', '# records', 'request/sec', $labels, ...$medidas);// $speed, $top);
+        $this->saveLineChart('API response time for different number of records', '# records', 'request/sec', $labels, ...$medidas);
     }
 
     private function performRouteTest($path)

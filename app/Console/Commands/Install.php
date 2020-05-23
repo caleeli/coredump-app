@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
 class Install extends Config
@@ -29,7 +28,9 @@ class Install extends Config
      */
     public function handle()
     {
-        parent::handle();
+        if (!file_exists('.env')) {
+            parent::handle();
+        }
         if (config('database.default') === 'sqlite'
             && !file_exists(config('database.connections.sqlite.database'))) {
             file_put_contents(config('database.connections.sqlite.database'), '');

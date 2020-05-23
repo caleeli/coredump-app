@@ -90,6 +90,7 @@ class Config extends Command
         file_put_contents('laravel-echo-server.json', json_encode($config, JSON_PRETTY_PRINT));
 
         Artisan::call('key:generate');
+        Artisan::call('storage:link');
     }
 
     /**
