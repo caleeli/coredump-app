@@ -80,7 +80,7 @@
     "prefer-stable": true,
     "scripts": {
         "test": [
-            "vendor\/bin\/phpunit",
+            "vendor\/bin\/phpunit -d memory_limit=-1 --coverage-html coverage",
             "vendor\/bin\/phpunit-doc > coverage\/doc.html"
         ],
         "post-install-cmd": [
