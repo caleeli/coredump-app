@@ -9,6 +9,8 @@
 /public/mix-manifest.json
 /public/modules
 /public/storage
+/public/vendor
+/public/images
 /storage/*.key
 /storage/api-docs/api-docs.json
 /vendor
