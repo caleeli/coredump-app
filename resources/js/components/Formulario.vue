@@ -105,7 +105,6 @@ export default {
           });
         } else {
           this.api.post(this.value).then((res) => {
-            this.api.refresh(this.value);
             this.success = 'Los cambios se guardaron correctamente';
             this.state = true;
             accept(res);
