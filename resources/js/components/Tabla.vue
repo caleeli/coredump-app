@@ -50,25 +50,7 @@
       :title="title"
       @ok="guardar"
     >
-      <template v-for="(field,index) in formFieldsF">
-        <div v-if="field.key==='attributes.avatar'" :key="`field-${index}`">
-          <avatar v-model="registro.attributes.avatar" style="font-size: 3em"></avatar>
-          <div class="form-group">
-            <div class="d-inline-block">
-              <upload v-model="registro.attributes.avatar" @change="updateAvatar">
-                <button type="button" class="btn btn-primary">Cambiar imagen</button>
-              </upload>
-            </div>
-          </div>
-        </div>
-        <div v-else :key="`field-${index}`">
-          <small>{{ field.label }}</small>
-          <input class="form-control" :type="field.type || 'text'" :value="getValue(registro, field.key)" @input="setValue(registro, field.key, $event)">
-        </div>
-      </template>
-      <div class="text-right w-100 mt-2">
-        <label class="text-danger" v-if="error">{{ error }}</label>
-      </div>
+      <formulario :fields="formFieldsF" :value="registro" :api="api" />
       <template slot="modal-ok">
         <i class="fas fa-save"></i> Guardar
       </template>
