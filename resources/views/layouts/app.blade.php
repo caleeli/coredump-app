@@ -27,6 +27,10 @@
         @foreach (config('plugins.javascript_before') as $javascript)
         <script src="{{ $javascript }}?{{filemtime(public_path($javascript))}}" defer></script>
         @endforeach
+        <script>
+            window._locale = '{{ app()->getLocale() }}';
+            window._translations = {!! cache('translations') !!};
+        </script>
         <script src="{{ mix('js/manifest.js') }}" defer></script>
         <script src="{{ mix('js/vendor.js') }}" defer></script>
         <script src="{{ mix('js/app.js') }}" defer></script>

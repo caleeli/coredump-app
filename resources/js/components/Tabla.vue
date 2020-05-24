@@ -4,7 +4,7 @@
       <b-input-group :class="{invisible: !searchIn}">
         <b-form-input :lazy="true" v-model="searchValue" size="sm" @change="search"></b-form-input>
         <b-input-group-append>
-          <b-button variant="outline-secondary" @click="search">Buscar</b-button>
+          <b-button variant="outline-secondary" @click="search">{{ __('search') }}</b-button>
         </b-input-group-append>
       </b-input-group>
       <b-input-group v-if="params.per_page!==-1" style="width: 22em;">
@@ -32,7 +32,7 @@
       </template>
       <template v-slot:head(actions)="">
         <div class="w-100 text-right">
-          <b-button variant="primary" @click="nuevo"><i class="fas fa-plus"></i> NUEVO</b-button>
+          <b-button variant="primary" @click="nuevo"><i class="fas fa-plus"></i> {{ __('new') }}</b-button>
         </div>
       </template>
       <template v-slot:cell(actions)="data">
@@ -143,13 +143,13 @@ export default {
       this.loadData();
     },
     eliminar(registro) {
-      this.$bvModal.msgBoxConfirm('Are you sure to delete this item?', {
-        title: 'Delete confirmation',
+      this.$bvModal.msgBoxConfirm(this.__('Are you sure to delete this item?'), {
+        title: this.__('Delete confirmation'),
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'danger',
-        okTitle: 'Yes',
-        cancelTitle: 'No',
+        okTitle: this.__('yes'),
+        cancelTitle: this.__('no'),
         hideHeaderClose: false,
         centered: true
       })

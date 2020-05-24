@@ -80,6 +80,9 @@ const VueJddComponents = require('vue-jdd-components');
 window.Vue.use(VueJddComponents.default, { jQuery: window.$ });
 Vue.use(BootstrapVue);
 
+// Load translations
+Vue.mixin(require('./mixins/trans'));
+
 /**
  * Config Vue-Router
  */
