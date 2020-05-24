@@ -26,7 +26,7 @@ modules.keys().map(key => {
     const name = key.split('/').pop().split('.')[0];
     const path = component.path ? component.path : name;
     Vue.component(name, component);
-    window.router.addRoutes([{ path, component, props: true }]);
+    window.router.addRoutes([{ name: component.name || name, path, component, props: true }]);
 });
 
 /**
@@ -47,6 +47,11 @@ const app = new Vue({
             me: this,
             user: this.$api.user.row(window.userId),
         };
+    },
+    computed: {
+        isAdmin() {
+            return this.user.id === 1;
+        },
     },
     mounted() {
         window.axios.post(

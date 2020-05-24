@@ -36,5 +36,6 @@ class Install extends Config
             file_put_contents(config('database.connections.sqlite.database'), '');
         }
         Artisan::call('migrate:fresh', ['--seed' => true]);
+        Artisan::call('passport:install');
     }
 }

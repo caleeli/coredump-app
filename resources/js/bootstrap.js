@@ -1,3 +1,5 @@
+import { BootstrapVue } from 'bootstrap-vue';
+
 window._ = require('lodash');
 const Vue = window.Vue = require('vue');
 window.moment = require('moment');
@@ -76,6 +78,7 @@ if (broadcasterHost) {
  */
 const VueJddComponents = require('vue-jdd-components');
 window.Vue.use(VueJddComponents.default, { jQuery: window.$ });
+Vue.use(BootstrapVue);
 
 /**
  * Config Vue-Router
