@@ -23,6 +23,14 @@
     <b-table :items="value" :fields="fields">
       <template v-slot:cell()="data">
         <slot v-if="hasSlot(`cell(${data.field.key})`)" :name="`cell(${data.field.key})`" v-bind="data" :update="update"></slot>
+        <formulario-campo v-else-if="inline && data.item.edit"
+          class="m-0"
+          without-label
+          :field="data.field"
+          :value="data.item"
+          :state="data.item.state"
+          :feedback="feedback(data.item, data.field.key)"
+        />
         <template v-else>
           {{ getValue(data.item, data.field.key) }}
         </template>
@@ -32,6 +40,7 @@
       </template>
       <template v-slot:head(actions)="">
         <div class="w-100 text-right">
+          <b-button variant="primary" @click="loadData"><i class="fas fa-sync"></i></b-button>
           <b-button variant="primary" @click="nuevo"><i class="fas fa-plus"></i> {{ __('new') }}</b-button>
         </div>
       </template>
@@ -39,7 +48,9 @@
         <div class="w-100 text-right">
           <div class="btn-group text-nowrap" role="group">
             <slot name="actions" v-bind="data"></slot>
-            <b-button variant="primary" @click="editar(data.item)"><i class="fas fa-pen"></i></b-button>
+            <b-button v-if="!inline" variant="primary" @click="editar(data.item)"><i class="fas fa-pen"></i></b-button>
+            <b-button v-else-if="!data.item.edit" variant="primary" @click="editarInline(data.item)"><i class="fas fa-pen"></i></b-button>
+            <b-button v-else variant="primary" @click="guardarInline(data.item)"><i class="fas fa-save"></i></b-button>
             <b-button variant="danger" @click="eliminar(data.item)"><i class="fas fa-times"></i></b-button>
           </div>
         </div>
@@ -62,16 +73,24 @@
 </template>
 
 <script>
-import { get, set } from 'lodash';
+import { get, set, cloneDeep } from 'lodash';
 
 const nuevoRegistro = {
   id: null,
   attributes: {},
 };
+const nuevoRegistroInline = {
+  id: null,
+  edit: true,
+  state: null,
+  error: '',
+  errors: {},
+  attributes: {},
+};
 export default {
   mixins: [window.ResourceMixin],
   props: {
-    inlineAdd: {
+    inline: {
       type: Boolean,
       default: false,
     },
@@ -108,7 +127,7 @@ export default {
         last_page: 0,
       },
       page: this.params.page || 1,
-      registro: nuevoRegistro,
+      registro: cloneDeep(nuevoRegistro),
       error: '',
     };
   },
@@ -178,6 +197,52 @@ export default {
         this.loadData();
       });
     },
+    feedback(row, key) {
+      const errors = row.errors;
+      return (errors[key] || []).join('. ');
+    },
+    loadErrors(row, errors) {
+      const loaded = {};
+      if (errors) {
+        for(let e in errors) {
+          const a = `attributes.${e}`;
+          loaded[a] = errors[e];
+        }
+      }
+      this.$set(row, 'errors', loaded);
+    },
+    editarInline(row) {
+      this.$set(row, 'edit', true);
+      this.$set(row, 'state', null);
+      this.$set(row, 'error', '');
+      this.$set(row, 'errors', {});
+    },
+    guardarInline(row) {
+      row.state = null;
+      if (row.id) {
+        this.api.save(row).then((res) => {
+          row.state = true;
+          row.edit = false;
+          this.api.refresh(row).then(() => {
+            this.$emit('change');
+          });
+        }).catch(res => {
+          row.error = res.response.data.message;
+          this.loadErrors(row, res.response.data.errors);
+          row.state = false;
+        });
+      } else {
+        this.api.post(row).then((res) => {
+          row.state = true;
+          row.edit = false;
+          this.$emit('change');
+        }).catch(res => {
+          row.error = res.response.data.message;
+          this.loadErrors(row, res.response.data.errors);
+          row.state = false;
+        });
+      }
+    },
     getValue(object, key) {
       return get(object, key);
     },
@@ -186,16 +251,19 @@ export default {
     },
     nuevo() {
       this.error = '';
-      if (this.inlineAdd) {
-        this.value.push(nuevoRegistro);
+      if (this.inline) {
+        this.value.push(cloneDeep(nuevoRegistroInline));
       } else {
-        this.registro = nuevoRegistro;
+        this.registro = cloneDeep(nuevoRegistro);
         this.$refs.modal.show();
       }
     },
     loadData() {
       this.api.index(this.params, this.value).then(response => {
         this.meta = response.data.meta;
+        this.value.forEach(row => {
+          this.$set(row, 'edit', false);
+        });
       });
     },
   },
