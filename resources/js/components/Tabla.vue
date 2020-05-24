@@ -143,10 +143,24 @@ export default {
       this.loadData();
     },
     eliminar(registro) {
-      this.api.delete(registro).catch(res => {
-        alert(res.response.data.message);
-      }).then(() => {
-        this.loadData();
+      this.$bvModal.msgBoxConfirm('Are you sure to delete this item?', {
+        title: 'Delete confirmation',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: 'Yes',
+        cancelTitle: 'No',
+        hideHeaderClose: false,
+        centered: true
+      })
+      .then(value => {
+        if (value) {
+          this.api.delete(registro).then(() => {
+            this.loadData();
+          }).catch(res => {
+            alert(res.response.data.message);
+          });
+        }
       });
     },
     editar(registro) {
@@ -163,21 +177,6 @@ export default {
         this.$refs.modal.hide();
         this.loadData();
       });
-      /*if (this.registro.id) {
-        this.api.put(this.registro).then((res) => {
-          this.$refs.modal.hide();
-          this.loadData();
-        }).catch(res => {
-          this.error = res.response.data.message;
-        });
-      } else {
-        this.api.post(this.registro).then(() => {
-          this.$refs.modal.hide();
-          this.loadData();
-        }).catch(res => {
-          this.error = res.response.data.message;
-        });
-      }*/
     },
     getValue(object, key) {
       return get(object, key);
