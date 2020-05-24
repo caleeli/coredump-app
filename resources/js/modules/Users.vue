@@ -6,7 +6,7 @@
     <template slot="actions">
       <nav-bar />
     </template>
-    <tabla :fields="fields" :form-fields="formFields" :api="api" title="Usuario"
+    <tabla :fields="fields" :form-fields="formFields" :api="api" :title="__('User')"
       :search-in="['attributes.name', 'attributes.email']"
     >
       <template v-slot:actions="data">
