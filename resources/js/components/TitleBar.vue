@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img class="logo" :src="logo"> {{ $root.$route.name }}
-  </div>
+  <span>
+    <img class="logo" :src="logo">
+  </span>
 </template>
 
 <script>

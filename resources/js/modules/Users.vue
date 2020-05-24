@@ -1,7 +1,7 @@
 <template>
-  <panel name="Usuarios" icon="fa fa-users" class="panel-secondary">
+  <panel name="Usuarios" class="panel-secondary">
     <template slot="header">
-      <title-bar />
+      <title-bar /> <i class="fa fa-users"></i> Usuarios
     </template>
     <template slot="actions">
       <nav-bar />
@@ -32,7 +32,7 @@
 <script>
 export default {
   name: "Usuarios",
-  path: "/",
+  path: "/users",
   mixins: [window.ResourceMixin],
   data() {
     return {
