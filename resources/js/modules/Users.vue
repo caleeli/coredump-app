@@ -1,7 +1,7 @@
 <template>
-  <panel name="Usuarios" class="panel-secondary">
+  <panel :name="__('Users')" class="panel-secondary">
     <template slot="header">
-      <title-bar /> <i class="fa fa-users"></i> Usuarios
+      <title-bar /> <i class="fa fa-users"></i> {{ __('Users') }}
     </template>
     <template slot="actions">
       <nav-bar />

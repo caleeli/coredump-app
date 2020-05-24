@@ -1,7 +1,7 @@
 <template>
   <panel class="panel-secondary">
     <template slot="header">
-      <title-bar /> <i class="fa fa-home"></i> Inicio
+      <title-bar /> <i class="fa fa-home"></i> {{ __('Home') }}
     </template>
     <template slot="actions">
       <nav-bar />
