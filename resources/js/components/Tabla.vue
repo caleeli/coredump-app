@@ -50,7 +50,7 @@
       :title="title"
       @ok="guardar"
     >
-      <formulario :fields="formFieldsF" :value="registro" :api="api" />
+      <formulario ref="formulario" :fields="formFieldsF" :value="registro" :api="api" />
       <template slot="modal-ok">
         <i class="fas fa-save"></i> Guardar
       </template>
@@ -159,7 +159,11 @@ export default {
     },
     guardar(bvModalEvt) {
       bvModalEvt.preventDefault();
-      if (this.registro.id) {
+      this.$refs.formulario.guardar().then(() => {
+        this.$refs.modal.hide();
+        this.loadData();
+      });
+      /*if (this.registro.id) {
         this.api.put(this.registro).then((res) => {
           this.$refs.modal.hide();
           this.loadData();
@@ -167,13 +171,13 @@ export default {
           this.error = res.response.data.message;
         });
       } else {
-        this.api.post(this.registro).catch(res => {
-          this.error = res.response.data.message;
-        }).then(() => {
+        this.api.post(this.registro).then(() => {
           this.$refs.modal.hide();
           this.loadData();
+        }).catch(res => {
+          this.error = res.response.data.message;
         });
-      }
+      }*/
     },
     getValue(object, key) {
       return get(object, key);

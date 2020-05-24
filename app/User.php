@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\HasMenus;
+use App\Traits\ModelValidation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -13,6 +14,7 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasMenus;
     use Notifiable;
+    use ModelValidation;
 
     /**
      * The attributes that are mass assignable.
@@ -47,5 +49,15 @@ class User extends Authenticatable
         if ($value) {
             $this->attributes['password'] = Hash::make($value);
         }
+    }
+
+    public function validation()
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required',
+        ];
     }
 }

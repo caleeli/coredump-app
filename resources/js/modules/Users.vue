@@ -42,14 +42,15 @@ export default {
         {key:'id', label: 'id'},
         {key:'attributes.avatar', label: ''},
         {key:'attributes.name', label: 'Nombre'},
-        {key:'attributes.email', label: 'Correo'},
+        {key:'attributes.email', type: 'email', label: 'Correo'},
         {key:'attributes.role', label: 'Rol'},
         {key:'actions', label: ''},
       ],
       formFields: [
         {key:'attributes.avatar', label: '', create: true, edit: true },
         {key:'attributes.name', label: 'Nombre', create: true, edit: true },
-        {key:'attributes.email', label: 'Correo', create: true, edit: true },
+        {key:'attributes.email', label: 'Correo', type: 'email', create: true, edit: true },
+        {key:'attributes.password', label: 'Contraseña', type: 'password', create: true, edit: false },
         {key:'attributes.role', label: 'Rol', create: true, edit: true, component: 'b-select', properties: {
             options: ["admin", "operator"]
           }
