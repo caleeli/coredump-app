@@ -9,14 +9,16 @@
       <i v-if="isEnabled()" class="fas fa-bell"></i>
       <i v-else class="fas fa-bell-slash"></i>
     </b-button>
+    <form class="m-0" action="/logout" method="post">
     <div class="btn-group" role="group">
       <router-link v-if="$root.user.attributes" to="/perfil" class="btn btn-outline-secondary text-nowrap pr-4">
         {{ $root.user.attributes.name }} <avatar v-model="$root.user" style="font-size: 1.5em;position: absolute;" />
       </router-link>
-      <a href="/logout" class="btn btn-outline-danger text-nowrap">
+      <button type="submit" class="btn btn-outline-danger text-nowrap">
         <i class="fas fa-power-off"></i>
-      </a>
+      </button>
     </div>
+    </form>
   </div>
 </template>
 

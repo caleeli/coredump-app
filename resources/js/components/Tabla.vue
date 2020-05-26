@@ -40,8 +40,9 @@
       </template>
       <template v-slot:head(actions)="">
         <div class="w-100 text-right">
-          <b-button variant="primary" @click="loadData"><i class="fas fa-sync"></i></b-button>
-          <b-button variant="primary" @click="nuevo"><i class="fas fa-plus"></i> {{ __('new') }}</b-button>
+          <slot name="toolbar"></slot>
+          <b-button v-if="!readonly" variant="primary" @click="loadData"><i class="fas fa-sync"></i></b-button>
+          <b-button v-if="!readonly" variant="primary" @click="nuevo"><i class="fas fa-plus"></i> {{ __('new') }}</b-button>
         </div>
       </template>
       <template v-slot:cell(actions)="data">
@@ -109,6 +110,7 @@ export default {
     formFields: Array,
     api: Object,
     title: String,
+    readonly: Boolean,
   },
   computed: {
     formFieldsF() {
@@ -263,6 +265,12 @@ export default {
         this.meta = response.data.meta;
         this.value.forEach(row => {
           this.$set(row, 'edit', false);
+          // Agrega los campos extra que no son parte de attributes o relationships o id o $type
+          this.fields.forEach(field => {
+            if (field.extra) {
+              this.$set(row, field.key, field.default ||  null);
+            }
+          });
         });
       });
     },

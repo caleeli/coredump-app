@@ -1,34 +1,12 @@
 <template>
   <div v-if="value.attributes">
     <template v-for="(field,index) in fields">
-      <div v-if="field.key==='attributes.avatar'" :key="`field-${index}`">
-        <avatar v-model="value.attributes.avatar" style="font-size: 3em"></avatar>
-        <div class="form-group">
-          <div class="d-inline-block">
-            <upload v-model="value.attributes.avatar" @change="updateAvatar">
-              <button type="button" class="btn btn-primary">Cambiar imagen</button>
-            </upload>
-          </div>
-        </div>
-      </div>
-      <b-form-group
-        v-else-if="field.component" :key="`field-${index}`"
-        :label="field.label"
-        label-size="sm"
+      <formulario-campo :key="`field-${index}`"
+        :field="field"
+        :value="value"
         :state="state"
         :invalid-feedback="feedback(field.key)"
-      >
-        <component :is="field.component" v-bind="field.properties" :value="getValue(value, field.key)" @change="setValue(value, field.key, $event)" />
-      </b-form-group>
-      <b-form-group
-        v-else :key="`field-${index}`"
-        :label="field.label"
-        label-size="sm"
-        :state="state"
-        :invalid-feedback="feedback(field.key)"
-      >
-        <b-form-input class="form-control" :type="field.type || 'text'" :value="getValue(value, field.key)" @change="setValue(value, field.key, $event)" />
-      </b-form-group>
+      />
     </template>
     <div class="text-right w-100 mt-2">
       <label class="text-danger" v-if="error">{{ error }}</label>
@@ -41,8 +19,6 @@
 </template>
 
 <script>
-import { get, set } from 'lodash';
-
 export default {
   mixins: [window.ResourceMixin],
   props: {
@@ -82,10 +58,7 @@ export default {
     },
     feedback(key) {
       const errors = this.errors;
-      return errors[key];
-    },
-    updateAvatar(avatar) {
-      this.value.attributes.avatar = avatar;
+      return (errors[key] || []).join('. ');
     },
     guardar() {
       return new Promise((accept, reject) => {
@@ -116,15 +89,6 @@ export default {
           });
         }
       });
-    },
-    getValue(object, key) {
-      return get(object, key);
-    },
-    setValue(object, key, value) {
-      set(object, key, value);
-    },
-    setInputValue(object, key, event) {
-      set(object, key, event.target.value);
     },
   },
 }

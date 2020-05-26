@@ -24,18 +24,22 @@
         <div id="app" class="flex-center position-ref full-height">
             @yield('content')
         </div>
+        @if(Auth::user())
         @foreach (config('plugins.javascript_before') as $javascript)
         <script src="{{ $javascript }}?{{filemtime(public_path($javascript))}}" defer></script>
         @endforeach
+        @endif
         <script>
             window._locale = '{{ app()->getLocale() }}';
             window._translations = {!! cache('translations') !!};
         </script>
+        @if(Auth::user())
         <script src="{{ mix('js/manifest.js') }}" defer></script>
         <script src="{{ mix('js/vendor.js') }}" defer></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
         @foreach (config('plugins.javascript') as $javascript)
         <script src="{{ $javascript }}?{{filemtime(public_path($javascript))}}" defer></script>
         @endforeach
+        @endif
     </body>
 </html>
