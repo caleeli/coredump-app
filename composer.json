@@ -18,10 +18,6 @@
         {
             "type": "vcs",
             "url": "https:\/\/github.com\/caleeli\/pacman.git"
-        },
-        {
-            "type": "path",
-            "url": "..\/jdd-theme"
         }
     ],
     "keywords": [
