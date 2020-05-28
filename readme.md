@@ -1,3 +1,13 @@
+## Dependencias
+PHP 7.1^
+composer
+NodeJS
+Redis
+Extensiones PHP:
+- openssl
+- mbstring
+- sqlite3
+
 ## Start a new project
 
 You could change the name of the project: `my_project`
