@@ -15,4 +15,6 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
+    $this->comment("To continue the installation run:\n");
+    $this->info('    php artisan app:install');
 })->describe('Display an inspiring quote');

@@ -1,8 +1,10 @@
 import { BootstrapVue } from 'bootstrap-vue';
+import VueFontAwesomePicker from "vfa-picker";
 
 window._ = require('lodash');
 const Vue = window.Vue = require('vue');
 window.moment = require('moment');
+Vue.use(VueFontAwesomePicker);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -11,7 +13,6 @@ window.moment = require('moment');
  */
 
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');

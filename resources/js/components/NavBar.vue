@@ -3,7 +3,8 @@
     <div class="btn-group text-nowrap mr-2" role="group">
       <slot />
       <router-link to="/" class="btn btn-warning"><i class="fas fa-home"></i> {{ __('Home') }}</router-link>
-      <router-link v-if="$root.isAdmin" to="/users" class="btn btn-info"><i class="fas fa-users"></i> {{ __('Users') }}</router-link>
+      <router-link v-for="menu in $root.menus" :key="`menu-${menu.id}`"
+        :to="menu.path" :class="`btn btn-${menu.variant}`"><i :class="menu.icon"></i> {{ __(menu.name) }}</router-link>
     </div>
     <b-button class="mr-2" :variant="isEnabled() ? 'primary' : 'outline-primary'" @click="requestNotificationAccess">
       <i v-if="isEnabled()" class="fas fa-bell"></i>

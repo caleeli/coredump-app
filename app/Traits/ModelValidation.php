@@ -24,6 +24,7 @@ trait ModelValidation
             $validations = $this->validation();
         }
         $validations = $this->validation();
+        $values = [];
         foreach ($validations as $field => $validation) {
             $values[$field] = $this->$field;
         }

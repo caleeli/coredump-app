@@ -16,7 +16,7 @@ trait HasMenus
      */
     public function menus()
     {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class, 'menu_role', 'role', 'role');
     }
 
     /**
@@ -26,6 +26,7 @@ trait HasMenus
      */
     public function allMenus()
     {
+        return $this->roleObject->menus;
         $menu = new Menu();
         $all = $menu->populateChildren([], $this);
         foreach($this->menus as $menu) {

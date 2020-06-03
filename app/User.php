@@ -55,6 +55,11 @@ class User extends Authenticatable
         }
     }
 
+    public function roleObject()
+    {
+        return $this->belongsTo(Role::class, 'role', 'role');
+    }
+
     public function validation()
     {
         return [

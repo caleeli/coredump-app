@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    public $incrementing = false;
+    protected $guarded = [];
 
     private static $childrenCallbacks = [];
 

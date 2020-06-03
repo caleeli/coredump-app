@@ -10,22 +10,18 @@
       :search-in="['attributes.name', 'attributes.email']"
     >
       <template v-slot:actions="data">
-        <b-button v-b-modal.changePassword @click="editar(data.item)" variant="info"><i class="fas fa-key"></i></b-button>
+        <b-button @click="editar(data.item)" variant="info"><i class="fas fa-key"></i></b-button>
       </template>
     </tabla>
-    <b-modal id="changePassword"
+    <modal-form id="changePassword"
       @ok="guardar"
       title="Cambiar contraseña"
+      v-model="user"
+      :fields="changePasswordFields"
+      :api="api"
+      ref="formulario"
     >
-      <formulario ref="formulario" :value="user" :fields="changePasswordFields" :api="api">
-      </formulario>
-      <template slot="modal-ok">
-        <i class="fas fa-save"></i> Guardar
-      </template>
-      <template slot="modal-cancel">
-        <i class="fas fa-window-close"></i> Cancelar
-      </template>
-    </b-modal>
+    </modal-form>
   </panel>
 </template>
 
@@ -65,13 +61,14 @@ export default {
   methods: {
     editar(user) {
       this.user = user;
+      this.$refs.formulario.show();
     },
     guardar(event) {
       if (this.user.confirm_password !== this.user.attributes.password) {
-        this.$refs.formulario.error = 'Contraseñas no coinciden';
+        this.$refs.formulario.error = this.__('Password and confirm password does not match');
         event.preventDefault();
       } else {
-        this.$refs.formulario.guardar();
+        this.$refs.formulario.save();
       }
     },
   },

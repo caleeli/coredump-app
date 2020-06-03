@@ -14,19 +14,21 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->char('id', 64);
-            $table->char('parent', 64)->nullable();
+            $table->bigIncrements('id');
+            $table->bigInteger('parent')->nullable();
+            $table->char('code', 64);
             $table->string('name');
-            $table->string('icon');
+            $table->string('path')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('variant')->default('info');
             $table->timestamps();
-            $table->primary('id');
             $table->foreign('parent')->references('id')->on('menus')->onDelete('cascade');
         });
-        Schema::create('menu_user', function (Blueprint $table) {
-            $table->char('menu_id', 64);
-            $table->bigIncrements('user_id');
+        Schema::create('menu_role', function (Blueprint $table) {
+            $table->bigInteger('menu_id', 64);
+            $table->string('role');
+            $table->timestamps();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -38,6 +40,6 @@ class CreateMenusTable extends Migration
     public function down()
     {
         Schema::dropIfExists('menus');
-        Schema::dropIfExists('menu_user');
+        Schema::dropIfExists('menu_role');
     }
 }
