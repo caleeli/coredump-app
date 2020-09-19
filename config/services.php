@@ -44,4 +44,60 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/facebook/callback'),
+        'background' => '#3b5999',
+        'icon' => 'fab fa-facebook',
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/twitter/callback'),
+        'background' => '#5aa4eb',
+        'icon' => 'fab fa-twitter',
+    ],
+
+    'linkedin' => [
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/linkedin/callback'),
+        'background' => '#1a82b9',
+        'icon' => 'fab fa-linkedin',
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/google/callback'),
+        'background' => '#cb4023',
+        'icon' => 'fab fa-google',
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/github/callback'),
+        'background' => '#333333',
+        'icon' => 'fab fa-github',
+    ],
+
+    'gitlab' => [
+        'client_id' => env('GITLAB_CLIENT_ID'),
+        'client_secret' => env('GITLAB_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/gitlab/callback'),
+        'background' => '#fa7035',
+        'icon' => 'fab fa-gitlab',
+    ],
+
+    'bitbucket' => [
+        'client_id' => env('BITBUCKET_CLIENT_ID'),
+        'client_secret' => env('BITBUCKET_CLIENT_SECRET'),
+        'redirect' => env('APP_URL', 'http://localhost') . ('/login/bitbucket/callback'),
+        'background' => '#0052cc',
+        'icon' => 'fab fa-bitbucket',
+    ],
+
 ];

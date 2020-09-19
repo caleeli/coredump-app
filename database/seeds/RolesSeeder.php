@@ -19,6 +19,10 @@ class RolesSeeder extends Seeder
         $admin = Role::create([
             'role' => 'admin',
         ]);
+        // Admin Role
+        $user = Role::create([
+            'role' => 'user',
+        ]);
         $admin->createMenu([
             'code' => 'users',
             'name' => 'Users',

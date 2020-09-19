@@ -11,6 +11,10 @@
 |
 */
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Socialite routes
+Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);

@@ -73,6 +73,18 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <div class="form-group row mb-0">
+                            @foreach($oauthProviders as $row)
+                            <div class="col-md-7 offset-md-4 d-flex flex-col">
+                                @foreach($row as $provider)
+                                <a href="/login/{{$provider['key']}}" class="btn text-white mr-2" style="background: {{$provider['background']}};">
+                                    {{ __('Login with') }} <i class="{{$provider['icon']}}"></i>
+                                </a>
+                                @endforeach
+                            </div>
+                            @endforeach
+                        </div>
                     </form>
                 </div>
             </div>

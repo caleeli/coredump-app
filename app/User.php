@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'role',
+        'name', 'email', 'password', 'avatar', 'role', 'provider', 'provider_id',
     ];
 
     protected $attributes = [
@@ -65,7 +65,6 @@ class User extends Authenticatable
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
             'role' => 'required',
         ];
     }
