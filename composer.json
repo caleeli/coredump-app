@@ -90,6 +90,7 @@
             "@php artisan jdd-package:update"
         ],
         "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php -r \"!file_exists('database\/database.sqlite') && file_put_contents('database\/database.sqlite', '');\""
         ],
         "post-create-project-cmd": [
