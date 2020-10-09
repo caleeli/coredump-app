@@ -28,7 +28,7 @@
     "license": "LGPL-3.0-or-later",
     "require": {
         "php": "^7.2.5",
-        "coredump/jdd-api": "dev-master",
+        "coredump/jdd-api": "^0.1.1",
         "coredump/jdd-flow": "dev-master",
         "coredump/jdd-pacman": "dev-master",
         "coredump/jdd-theme": "dev-master",
@@ -48,7 +48,7 @@
         "fzaninotto\/faker": "^1.4",
         "mockery\/mockery": "^1.0",
         "nunomaduro\/collision": "^4.1",
-        "phpunit\/phpunit": "^8.5"
+        "phpunit\/phpunit": "*"
     },
     "config": {
         "optimize-autoloader": true,
@@ -82,8 +82,7 @@
             "vendor\/bin\/phpunit-doc > coverage\/doc.html"
         ],
         "post-install-cmd": [
-            "@php -r \"!file_exists('database\/database.sqlite') && file_put_contents('database\/database.sqlite', '');\"",
-            "@php artisan inspire"
+            "@php -r \"!file_exists('database\/database.sqlite') && file_put_contents('database\/database.sqlite', '');\""
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -91,12 +90,12 @@
             "@php artisan jdd-package:update"
         ],
         "post-root-package-install": [
-            "@php -r \"!file_exists('database\/database.sqlite') && file_put_contents('database\/database.sqlite', '');\"",
-            "@php artisan inspire"
+            "@php -r \"!file_exists('database\/database.sqlite') && file_put_contents('database\/database.sqlite', '');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
-            "@php artisan storage:link"
+            "@php artisan storage:link",
+            "@php artisan inspire"
         ]
     }
 }
