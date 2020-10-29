@@ -4,7 +4,10 @@
       <b-input-group :class="{invisible: !searchIn}">
         <b-form-input :lazy="true" v-model="searchValue" @change="search"></b-form-input>
         <b-input-group-append>
-          <b-button variant="outline-secondary" @click="search">{{ __('search') }}</b-button>
+          <b-button variant="outline-secondary" @click="search">
+            <i class="fa fa-search d-block d-sm-none"></i>
+            <span class="d-none d-sm-block">{{ __('search') }}</span>
+          </b-button>
         </b-input-group-append>
       </b-input-group>
       <b-input-group v-if="params.per_page!==-1" style="width: 22em;">
@@ -12,9 +15,9 @@
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(1)"><i class="fas fa-step-backward"></i></b-button>
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(params.page - 1)"><i class="fas fa-caret-left"></i></b-button>
         </b-input-group-prepend>
-        <b-form-input v-model="page" :lazy="true" class="text-right"></b-form-input>
+        <b-form-input v-model="page" :lazy="true" class="text-right d-none d-sm-block"></b-form-input>
         <b-input-group-append>
-          <b-button variant="outline-secondary" disabled>/{{ meta.last_page }}</b-button>
+          <b-button variant="outline-secondary" class="d-none d-sm-block" disabled>/{{ meta.last_page }}</b-button>
           <b-button variant="outline-secondary" :disabled="params.page>=meta.last_page" @click="setPage(params.page + 1)"><i class="fas fa-caret-right"></i></b-button>
           <b-button variant="outline-secondary" :disabled="params.page>=meta.last_page" @click="setPage(meta.last_page)"><i class="fas fa-step-forward"></i></b-button>
         </b-input-group-append>
@@ -42,7 +45,7 @@
         <div class="w-100 text-right">
           <slot name="toolbar"></slot>
           <b-button v-if="!readonly" variant="primary" @click="loadData"><i class="fas fa-sync"></i></b-button>
-          <b-button v-if="!readonly" variant="primary" @click="nuevo"><i class="fas fa-plus"></i> {{ __('new') }}</b-button>
+          <b-button v-if="!readonly" variant="primary" @click="nuevo"><i class="fas fa-plus"></i> <span class="d-none d-md-block">{{ __('new') }}</span></b-button>
         </div>
       </template>
       <template v-slot:cell(actions)="data">
@@ -261,6 +264,7 @@ export default {
       }
     },
     loadData() {
+      this.value.splice(0);
       this.api.index(this.params, this.value).then(data => {
         this.meta = data.meta;
         this.value.forEach(row => {
