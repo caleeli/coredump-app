@@ -75,19 +75,21 @@ new Vue({
         },
     },
     methods: {
-        login({user, broadcaster, token}) {
-            window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            if (!user) {
+        login(data) {
+            window.axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+            if (!data.user) {
                 window.axios.get(`${global.config.VUE_APP_SERVER_URL}/oauth/userinfo`)
                 .then(({data}) => {
                     window.userId = data.user.id;
                     this.user = data.user;
+                    this.menus = data.menus;
                     window.Echo = new Echo(data.broadcaster);
                 });
             } else {
-                window.userId = user.id;
-                this.user = user;
-                window.Echo = new Echo(broadcaster);
+                window.userId = data.user.id;
+                this.user = data.user;
+                this.menus = data.menus;
+                window.Echo = new Echo(data.broadcaster);
             }
             this.$router.replace('/');
         },

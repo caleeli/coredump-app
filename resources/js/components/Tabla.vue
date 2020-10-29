@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex">
       <b-input-group :class="{invisible: !searchIn}">
-        <b-form-input :lazy="true" v-model="searchValue" size="sm" @change="search"></b-form-input>
+        <b-form-input :lazy="true" v-model="searchValue" @change="search"></b-form-input>
         <b-input-group-append>
           <b-button variant="outline-secondary" @click="search">{{ __('search') }}</b-button>
         </b-input-group-append>
@@ -12,7 +12,7 @@
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(1)"><i class="fas fa-step-backward"></i></b-button>
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(params.page - 1)"><i class="fas fa-caret-left"></i></b-button>
         </b-input-group-prepend>
-        <b-form-input v-model="page" :lazy="true" class="text-right" size="sm"></b-form-input>
+        <b-form-input v-model="page" :lazy="true" class="text-right"></b-form-input>
         <b-input-group-append>
           <b-button variant="outline-secondary" disabled>/{{ meta.last_page }}</b-button>
           <b-button variant="outline-secondary" :disabled="params.page>=meta.last_page" @click="setPage(params.page + 1)"><i class="fas fa-caret-right"></i></b-button>
@@ -222,7 +222,7 @@ export default {
     guardarInline(row) {
       row.state = null;
       if (row.id) {
-        this.api.save(row).then((res) => {
+        this.api.save(row).then(() => {
           row.state = true;
           row.edit = false;
           this.api.refresh(row).then(() => {
@@ -234,7 +234,7 @@ export default {
           row.state = false;
         });
       } else {
-        this.api.post(row).then((res) => {
+        this.api.post(row).then(() => {
           row.state = true;
           row.edit = false;
           this.$emit('change');
@@ -261,8 +261,8 @@ export default {
       }
     },
     loadData() {
-      this.api.index(this.params, this.value).then(response => {
-        this.meta = response.data.meta;
+      this.api.index(this.params, this.value).then(data => {
+        this.meta = data.meta;
         this.value.forEach(row => {
           this.$set(row, 'edit', false);
           // Agrega los campos extra que no son parte de attributes o relationships o id o $type

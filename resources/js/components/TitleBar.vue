@@ -16,9 +16,8 @@
           <i class="fas fa-home"></i> {{ __('Home') }}
         </router-link>
       </b-dropdown-item>
-      <b-dropdown-item>
-        <router-link v-for="menu in $root.menus" :key="`menu-${menu.id}`"
-          :to="menu.path"><i :class="menu.icon"></i> {{ __(menu.name) }}</router-link>
+      <b-dropdown-item v-for="menu in $root.menus" :key="`menu-${menu.id}`">
+        <router-link :to="menu.path"><i :class="menu.icon"></i> {{ __(menu.name) }}</router-link>
       </b-dropdown-item>
   </b-dropdown>
 </template>

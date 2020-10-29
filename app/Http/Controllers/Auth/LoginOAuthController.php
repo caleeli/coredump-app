@@ -101,6 +101,7 @@ class LoginOAuthController extends Controller
                     'host' => env('BROADCASTER_HOST'),
                     'key' => env('BROADCASTER_KEY'),
                 ],
+                'menus' => $user->allMenus(),
             ],
             'redirectTo' => $this->redirectTo,
         ]);
@@ -118,6 +119,7 @@ class LoginOAuthController extends Controller
                 'host' => env('BROADCASTER_HOST'),
                 'key' => env('BROADCASTER_KEY'),
             ],
+            'menus' => $user->allMenus(),
         ]);
     }
 }

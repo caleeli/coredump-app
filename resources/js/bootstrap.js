@@ -1,5 +1,6 @@
 import { BootstrapVue } from 'bootstrap-vue';
 import VueFontAwesomePicker from "vfa-picker";
+import trans from './mixins/trans';
 
 window._ = require('lodash');
 const Vue = window.Vue = require('vue');
@@ -82,7 +83,8 @@ window.Vue.use(VueJddComponents.default, { jQuery: window.$ });
 Vue.use(BootstrapVue);
 
 // Load translations
-Vue.mixin(require('./mixins/trans'));
+Vue.mixin(trans);
+Vue.mixin({data(){ return {isApp: false}}});
 
 /**
  * Config Vue-Router

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { uniqueid } from 'lodash';
+import { uniqueId } from 'lodash';
 
 export default {
   props: {
@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      uid: uniqueid(),
+      uid: uniqueId(),
     };
   },
   methods: {
