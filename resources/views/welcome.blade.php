@@ -60,6 +60,26 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            @font-face {
+                font-family: 'logo';
+                src: url(/fonts/caserita.ttf?3b59d44a3d364049ab07ea32f0ab31b0) format("truetype");
+            }
+            @keyframes banner {
+                from {
+                    width: 100px;
+                }
+
+                to {
+                    width: 300px;
+                }
+            }
+            div {
+                animation-duration: 0.1s;
+                animation-name: changewidth;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
         </style>
     </head>
     <body>

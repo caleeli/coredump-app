@@ -8,8 +8,8 @@
             "url": "https:\/\/github.com\/caleeli\/jdd-theme.git"
         },
         {
-            "type": "vcs",
-            "url": "https:\/\/github.com\/caleeli\/jdd-flow.git"
+            "type": "path",
+            "url": "../jdd-flow"
         },
         {
             "type": "vcs",
@@ -29,10 +29,11 @@
     "require": {
         "php": "^7.2.5",
         "coredump/jdd-api": "^0.1.1",
-        "coredump/jdd-flow": "dev-master",
+        "coredump/jdd-flow": "^0.1.2",
         "coredump/jdd-pacman": "dev-master",
         "coredump/jdd-theme": "dev-master",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^2.0",
         "laravel/framework": "^7.0",
         "laravel/horizon": "^4.3",
         "laravel/passport": "^9.2",

@@ -13,7 +13,7 @@
 <script>
 export default {
   path: "/sample/console",
-  mixins: [window.workflowMixin],
+  mixins: [window.WorkflowMixin],
   data() {
     return {
       actions: {

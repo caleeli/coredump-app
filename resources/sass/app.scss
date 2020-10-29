@@ -64,3 +64,24 @@ html, body {
 .modal-backdrop {
     opacity: 0.5;
 }
+
+@font-face {
+    font-family: 'logo';
+    src: url(./caserita.ttf) format('truetype');
+}
+
+.banner {
+    background-image: url(../images/banner.jpg);
+}
+
+.text-border {
+    text-shadow: 1px 0 0 $secondary, -1px 0 0 $secondary, 0 1px 0 $secondary, 0 -1px 0 $secondary, 1px 1px $secondary, -1px -1px 0 $secondary, 1px -1px 0 $secondary, -1px 1px 0 $secondary;
+}
+
+.text-border-black {
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+.text-border-white {
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}

@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       api: this.$api.user,
-      usuarios: this.$api.user.array({pre_page:1000}),
+      usuarios: this.$api.user.array({per_page:1000}),
       fields: [
         {key:'attributes.avatar', label: '', create: true, edit: true },
         {key:'attributes.name', label: 'Nombre', create: true, edit: true },

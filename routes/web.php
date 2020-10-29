@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginOAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Socialite routes
-Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
-Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('login/{provider}', [LoginOAuthController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [LoginOAuthController::class, 'handleProviderCallback']);
+
+Route::get('oauth/userinfo', [LoginOAuthController::class, 'userinfo'])->middleware('auth:api');
