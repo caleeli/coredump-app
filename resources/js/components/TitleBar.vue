@@ -11,13 +11,15 @@
     <template #button-content>
       <img class="logo" :src="logo">
     </template>
-      <b-dropdown-item-button to="/">
-        <i class="fas fa-home"></i> {{ __('Home') }}
-      </b-dropdown-item-button>
-      <b-dropdown-item-button>
+      <b-dropdown-item>
+        <router-link to="/">
+          <i class="fas fa-home"></i> {{ __('Home') }}
+        </router-link>
+      </b-dropdown-item>
+      <b-dropdown-item>
         <router-link v-for="menu in $root.menus" :key="`menu-${menu.id}`"
           :to="menu.path"><i :class="menu.icon"></i> {{ __(menu.name) }}</router-link>
-      </b-dropdown-item-button>
+      </b-dropdown-item>
   </b-dropdown>
 </template>
 
