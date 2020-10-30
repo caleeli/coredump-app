@@ -10,7 +10,7 @@
           </b-button>
         </b-input-group-append>
       </b-input-group>
-      <b-input-group v-if="params.per_page!==-1" style="width: 22em;">
+      <b-input-group v-if="params.per_page!==-1" style="max-width: 22em;" class="text-nowrap">
         <b-input-group-prepend>
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(1)"><i class="fas fa-step-backward"></i></b-button>
           <b-button variant="outline-secondary" :disabled="params.page<=1" @click="setPage(params.page - 1)"><i class="fas fa-caret-left"></i></b-button>

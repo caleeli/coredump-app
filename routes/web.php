@@ -19,6 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/david', function () {
+    \Log::info('DAVID GET');
+    return 'Hola';
+});
+Route::post('/david', function () {
+    \Log::info('DAVID POST');
+    return 'Hola';
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,3 +38,5 @@ Route::get('login/{provider}', [LoginOAuthController::class, 'redirectToProvider
 Route::get('login/{provider}/callback', [LoginOAuthController::class, 'handleProviderCallback']);
 
 Route::get('oauth/userinfo', [LoginOAuthController::class, 'userinfo'])->middleware('auth:api');
+
+

@@ -72,6 +72,9 @@ if (broadcasterHost) {
         broadcaster: 'socket.io',
         host: meta("broadcaster-host"),
         key: meta("broadcaster-key"),
+        headers: {
+            'X-CSRF-TOKEN': token,
+        },
     });
 }
 

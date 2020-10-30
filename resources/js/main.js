@@ -34,7 +34,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.mixin(trans);
 Vue.config.productionTip = false;
-Vue.mixin({data(){ return {isApp: true}}});
+Vue.mixin({data(){ return {isApp: true, app_name: config.name }}});
 
 window.router = new VueRouter({
     routes: []
@@ -77,21 +77,35 @@ new Vue({
     methods: {
         login(data) {
             window.axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+            const token = data.token;
             if (!data.user) {
                 window.axios.get(`${global.config.VUE_APP_SERVER_URL}/oauth/userinfo`)
                 .then(({data}) => {
                     window.userId = data.user.id;
                     this.user = data.user;
                     this.menus = data.menus;
-                    window.Echo = new Echo(data.broadcaster);
+                    window.Echo = new Echo(Object.assign(data.broadcaster, {
+                        auth: {
+                            headers: {
+                                Authorization: 'Bearer ' + token,
+                            },
+                        },
+                    }));
+                    this.$router.push('/');
                 });
             } else {
                 window.userId = data.user.id;
                 this.user = data.user;
                 this.menus = data.menus;
-                window.Echo = new Echo(data.broadcaster);
+                window.Echo = new Echo(Object.assign(data.broadcaster, {
+                    auth: {
+                        headers: {
+                            Authorization: 'Bearer ' + token,
+                        },
+                    },
+                }));
+                this.$router.push('/');
             }
-            this.$router.replace('/');
         },
     },
 });

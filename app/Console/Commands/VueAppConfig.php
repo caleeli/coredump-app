@@ -65,6 +65,7 @@ class VueAppConfig extends Command
             $styles[] = env('VUE_APP_SERVER_URL') . "{$css}?" . filemtime(public_path($css));
         }
         $config = [
+            'name' => config('app.name'),
             'translations' => Cache::get('translations'),
             'locale' => app()->getLocale(),
             'providers' => LoginOAuthController::oauthProviders(1, true),

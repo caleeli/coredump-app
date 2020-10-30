@@ -3,7 +3,7 @@
     <middle content-class="p-3">
       <b-row>
         <b-col cols="12">
-          <h2 class="text-white text-border-black">{{__('Login')}}</h2>
+          <h1 class="title text-white text-border-black">{{app_name}}</h1>
         </b-col>
         <b-col cols="12" sm="6">
           <b-form-group
@@ -83,3 +83,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.title {
+  font-family: 'Logo', 'Nunito', sans-serif;
+}
+</style>

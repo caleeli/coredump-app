@@ -44,7 +44,7 @@
 
             .title {
                 font-size: 84px;
-                font-family: 'logo', 'Nunito', sans-serif;
+                font-family: 'Logo', 'Nunito', sans-serif;
             }
 
             .links > a {
@@ -62,8 +62,8 @@
             }
 
             @font-face {
-                font-family: 'logo';
-                src: url(/fonts/caserita.ttf?3b59d44a3d364049ab07ea32f0ab31b0) format("truetype");
+                font-family: 'Logo';
+                src: url(/fonts/logo.ttf?3b59d44a3d364049ab07ea32f0ab31b0) format("truetype");
             }
             @keyframes banner {
                 from {
