@@ -6,8 +6,11 @@
     <template slot="actions">
       <nav-bar />
     </template>
-    <b-button @click="$bpmn.call('delivery.bpmn')">Nuevo pedido</b-button>
+    <b-button @click="bpmn.call('delivery.bpmn')">Nuevo pedido</b-button>
     <tabla ref="tasks" :fields="fields" :form-fields="formFields" :api="tasks" :title="__('Tasks')">
+      <template v-slot:[`cell(attributes.name)`]="{ item }">
+        <router-link :to="bpmn.route(item)">{{ item.attributes.name }}</router-link>
+      </template>
     </tabla>
   </panel>
 </template>
@@ -20,7 +23,6 @@ export default {
     return {
       tasks: this.$api.process_token,
       fields: [
-        {key:'id', label: 'id'},
         {key:'attributes.name', label: 'Nombre'},
       ],
       formFields: [
@@ -29,7 +31,7 @@ export default {
     };
   },
   watch: {
-    '$bpmn.NewProcess'() {
+    'bpmn.NewProcess'() {
       this.$refs.tasks.loadData();
     },
   },

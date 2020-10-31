@@ -38,7 +38,7 @@
           {{ getValue(data.item, data.field.key) }}
         </template>
       </template>
-      <template v-slot:cell(attributes.avatar)="data">
+      <template v-slot:[`cell(attributes.avatar)`]="data">
         <avatar style="font-size: 2em" :value="data.item.attributes.avatar" />
       </template>
       <template v-slot:head(actions)="">
@@ -264,9 +264,9 @@ export default {
       }
     },
     loadData() {
-      this.value.splice(0);
       this.api.index(this.params, this.value).then(data => {
         this.meta = data.meta;
+        this.value.splice(0, this.value.length, ... data.data);
         this.value.forEach(row => {
           this.$set(row, 'edit', false);
           // Agrega los campos extra que no son parte de attributes o relationships o id o $type
