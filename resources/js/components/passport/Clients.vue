@@ -37,7 +37,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="client in clients">
+                        <tr v-for="client in clients" :key="client.id">
                             <!-- ID -->
                             <td style="vertical-align: middle;">
                                 {{ client.id }}
@@ -90,7 +90,7 @@
                             <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in createForm.errors">
+                                <li v-for="(error,index) in createForm.errors" :key="`error-${index}`">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -158,7 +158,7 @@
                             <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
                             <br>
                             <ul>
-                                <li v-for="error in editForm.errors">
+                                <li v-for="(error,index) in editForm.errors" :key="`error-${index}`">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -211,6 +211,8 @@
 </template>
 
 <script>
+    import _ from 'lodash';
+
     export default {
         /*
          * The component's data.
@@ -254,12 +256,12 @@
             prepareComponent() {
                 this.getClients();
 
-                $('#modal-create-client').on('shown.bs.modal', () => {
-                    $('#create-client-name').focus();
+                window.$('#modal-create-client').on('shown.bs.modal', () => {
+                    window.$('#create-client-name').focus();
                 });
 
-                $('#modal-edit-client').on('shown.bs.modal', () => {
-                    $('#edit-client-name').focus();
+                window.$('#modal-edit-client').on('shown.bs.modal', () => {
+                    window.$('#edit-client-name').focus();
                 });
             },
 
@@ -267,7 +269,7 @@
              * Get all of the OAuth clients for the user.
              */
             getClients() {
-                axios.get('/oauth/clients')
+                window.axios.get('/oauth/clients')
                         .then(response => {
                             this.clients = response.data;
                         });
@@ -277,7 +279,7 @@
              * Show the form for creating new clients.
              */
             showCreateClientForm() {
-                $('#modal-create-client').modal('show');
+                window.$('#modal-create-client').modal('show');
             },
 
             /**
@@ -298,7 +300,7 @@
                 this.editForm.name = client.name;
                 this.editForm.redirect = client.redirect;
 
-                $('#modal-edit-client').modal('show');
+                window.$('#modal-edit-client').modal('show');
             },
 
             /**
@@ -317,15 +319,15 @@
             persistClient(method, uri, form, modal) {
                 form.errors = [];
 
-                axios[method](uri, form)
-                    .then(response => {
+                window.axios[method](uri, form)
+                    .then(() => {
                         this.getClients();
 
                         form.name = '';
                         form.redirect = '';
                         form.errors = [];
 
-                        $(modal).modal('hide');
+                        window.$(modal).modal('hide');
                     })
                     .catch(error => {
                         if (typeof error.response.data === 'object') {
@@ -340,8 +342,8 @@
              * Destroy the given client.
              */
             destroy(client) {
-                axios.delete('/oauth/clients/' + client.id)
-                        .then(response => {
+                window.axios.delete('/oauth/clients/' + client.id)
+                        .then(() => {
                             this.getClients();
                         });
             }

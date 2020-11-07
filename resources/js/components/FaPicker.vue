@@ -38,8 +38,8 @@ export default {
     value: {
       immediate: true,
       handler(value) {
-        if (this.value && base + this.local !== this.value) {
-          this.local = this.value.replace(/^fa.? fa-/, '');
+        if (value && base + this.local !== value) {
+          this.local = value.replace(/^fa.? fa-/, '');
         }
       }
     },

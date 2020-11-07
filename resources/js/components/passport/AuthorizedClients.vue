@@ -22,7 +22,7 @@
                         </thead>
 
                         <tbody>
-                            <tr v-for="token in tokens">
+                            <tr v-for="(token,index) in tokens" :key="`token-${index}`">
                                 <!-- Client Name -->
                                 <td style="vertical-align: middle;">
                                     {{ token.client.name }}
@@ -87,7 +87,7 @@
              * Get all of the authorized tokens for the user.
              */
             getTokens() {
-                axios.get('/oauth/tokens')
+                window.axios.get('/oauth/tokens')
                         .then(response => {
                             this.tokens = response.data;
                         });
@@ -97,8 +97,8 @@
              * Revoke the given token.
              */
             revoke(token) {
-                axios.delete('/oauth/tokens/' + token.id)
-                        .then(response => {
+                window.axios.delete('/oauth/tokens/' + token.id)
+                        .then(() => {
                             this.getTokens();
                         });
             }
