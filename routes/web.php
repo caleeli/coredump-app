@@ -19,16 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/david', function () {
-    \Log::info('DAVID GET');
-    return 'Hola';
-});
-Route::post('/david', function () {
-    \Log::info('DAVID POST');
-    return 'Hola';
-});
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
