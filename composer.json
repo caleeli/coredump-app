@@ -28,8 +28,8 @@
     "license": "LGPL-3.0-or-later",
     "require": {
         "php": "^7.2.5",
-        "coredump/jdd-api": "^0.1.1",
-        "coredump/jdd-flow": "^0.1.2",
+        "coredump/jdd-api": "^0.3.0",
+        "coredump/jdd-flow": "^0.2.2",
         "coredump/jdd-pacman": "dev-master",
         "coredump/jdd-theme": "dev-master",
         "fideloper/proxy": "^4.0",
